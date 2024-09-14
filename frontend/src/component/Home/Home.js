@@ -1,17 +1,25 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import { CiDesktopMouse2 } from "react-icons/ci";
 import './Home.css'
 import Product from './Product.js'
 import MetaData from '../layout/MetaData.js';
+import { getProduct } from '../../actions/productActions.js';
+import { useSelector, useDispatch } from 'react-redux'
+
 
 const product = {
   name: 'Blue Tshirt',
-  images: [{ url: 'https://i.ibb.co/DRST11n/1.webp'}],
+  images: [{ url: 'https://i.ibb.co/DRST11n/1.webp' }],
   price: '₹3000',
   _id: 'abhishek',
 }
 
 const Home = () => {
+  const dispatch = useDispatch();
+  // const {  } = useSelector(state=> state.products);
+  useEffect(() => {
+    dispatch(getProduct());
+  }, [dispatch])
   return (
     <Fragment>
       <MetaData title="ECOMMERCE" />
