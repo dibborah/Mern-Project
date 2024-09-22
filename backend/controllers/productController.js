@@ -90,4 +90,5 @@ exports.deleteProduct = catchAsyncErrors(async(req, res, next) => {
         success: true,
         message: "Product Deleted Successfully"
     })
-})
+});
+
