@@ -8,6 +8,8 @@ const {
     getUserDetails,
     updatePassword,
     updateProfile,
+    getAllUsers,
+    getSingleUser,
 } = require("../controllers/userController");
 
 const { isAuthenticatedUser,
@@ -33,7 +35,8 @@ router.route("/password/update").put(isAuthenticatedUser, updatePassword);
 // this route not working
 router.route("/me/update").put(isAuthenticatedUser, updateProfile);
 
-module.exports = router;
+router.route("/admin/users").get(isAuthenticatedUser, authorizeRoles("admin"), getAllUsers);
 
-// regarding password all the functionalities are not working
-// Forgot , reset and update password not working
+router.route("/admin/user/:id").get(isAuthenticatedUser, authorizeRoles("admin"), getSingleUser);
+
+module.exports = router;
