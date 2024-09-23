@@ -1,12 +1,12 @@
 const Product = require("../models/productModel");
 const ErrorHandler = require("../utils/errorhandler");
-const catchAsyncErrors = require("../middleware/catchAsyncErrors"); 
+const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const ApiFeatures = require("../utils/apifeatures");
 
 
 // Create Product -- Admin
 exports.createProduct = catchAsyncErrors(async (req, res, next) => {
-    
+
     req.body.user = req.user.id;
 
     const product = await Product.create(req.body);
@@ -18,14 +18,14 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
 });
 
 // Get All Product
-exports.getAllProducts = catchAsyncErrors(async(req, res) => {
+exports.getAllProducts = catchAsyncErrors(async (req, res) => {
 
     const resultPerPage = 5;
     const productCount = await Product.countDocuments()
 
     const apiFeature = new ApiFeatures(Product.find(), req.query)
-    .search()
-    .filter().pagination(resultPerPage)
+        .search()
+        .filter().pagination(resultPerPage)
     const products = await apiFeature.query;
 
     res.status(200).json({
@@ -36,11 +36,11 @@ exports.getAllProducts = catchAsyncErrors(async(req, res) => {
 })
 
 // Get Product Details
-exports.getProductDetails = catchAsyncErrors(async(req, res, next) => {
+exports.getProductDetails = catchAsyncErrors(async (req, res, next) => {
 
     let product = await Product.findById(req.params.id);
 
-    if(!product) {
+    if (!product) {
         // return res.status(500).json({
         //     success: false,
         //     message: "Product not found"
@@ -56,15 +56,16 @@ exports.getProductDetails = catchAsyncErrors(async(req, res, next) => {
 })
 
 // Update Product -- Admin
-exports.updateProduct = catchAsyncErrors(async(req, res, next) => {
+exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
     let product = await Product.findById(req.params.id);
-    if(!product) {
+    if (!product) {
         return res.status(500).json({
             success: false,
             message: "Product not found"
         })
     }
-    product = await Product.findByIdAndUpdate(req.params.id, req.body, {new: true, 
+    product = await Product.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
         runValidators: true,
         useFindAndModify: false
     })
@@ -76,9 +77,9 @@ exports.updateProduct = catchAsyncErrors(async(req, res, next) => {
 
 
 // Delete Product
-exports.deleteProduct = catchAsyncErrors(async(req, res, next) => {
+exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
     const product = await Product.findById(req.params.id);
-    if(!product){
+    if (!product) {
         return res.status(500).json({
             success: false,
             message: "Product not found"
@@ -90,5 +91,47 @@ exports.deleteProduct = catchAsyncErrors(async(req, res, next) => {
         success: true,
         message: "Product Deleted Successfully"
     })
+});
+
+// Create New Review or Update the review
+exports.createProductReview = catchAsyncErrors(async (req, res, next) => {
+
+    const { rating, comment, productId } = req.body;
+
+    const review = {
+        user: req.user._id,
+        name: req.user.name,
+        rating: Number(rating),
+        comment,
+    }
+
+    const product = await Product.findById(productId);
+
+    const isReviewed = product.reviews.find(rev => rev.user.toString() === req.user._id.toString());
+
+    if (isReviewed) {
+        product.reviews.forEach((rev) => {
+            if (rev.user.toString() === req.user._id.toString()) {
+                rev.rating = rating;
+                rev.comment = comment;
+            }
+        });
+    } else {
+        product.reviews.push(review);
+        product.numOfReviews = product.reviews.length;
+    }
+
+    let avg = 0;
+    product.reviews.forEach((rev) => {
+        avg += rev.rating
+    });
+
+    product.ratings = avg / (product.reviews.length);
+
+    await product.save({ validateBeforeSave: false });
+
+    res.status(200).json({
+        success: true,
+    });
 });
 
