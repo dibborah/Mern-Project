@@ -51,13 +51,6 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
         return next(new ErrorHandler('Invalid email or password', 401));
     }
     
-    // const token = user.getJWTToken();
-
-    // res.status(200).json({
-    //     success: true,
-    //     token,
-    // });
-
     sendToken(user, 200, res);
 });
 
@@ -163,15 +156,15 @@ exports.resetPassword = catchAsyncErrors(async(req, res, next) => {
 });
 
 // Get User Detail
-// exports.getUserDetails = catchAsyncErrors(async(req, res, next) => {
+exports.getUserDetails = catchAsyncErrors(async(req, res, next) => {
 
-//     const user = await User.findById(req.user.id);
+    const user = await User.findById(req.user.id);
 
-//     res.status(200).json({
-//         success: true,
-//         user,
-//     });
-// });
+    res.status(200).json({
+        success: true,
+        user,
+    });
+});
 
 // Update User Password
 // exports.updatePassword = catchAsyncErrors(async(req, res, next) => {
