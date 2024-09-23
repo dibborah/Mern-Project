@@ -30,8 +30,8 @@ router.route("/me").get(isAuthenticatedUser, getUserDetails);
 
 router.route("/password/update").put(isAuthenticatedUser, updatePassword);
 
-// // this route not working
-// router.route("/me/update").put(isAuthenticatedUser, updateProfile);
+// this route not working
+router.route("/me/update").put(isAuthenticatedUser, updateProfile);
 
 module.exports = router;
 
