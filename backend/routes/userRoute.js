@@ -28,8 +28,7 @@ router.route("/logout").get(logout);
 
 router.route("/me").get(isAuthenticatedUser, getUserDetails);
 
-// // this route not working
-// router.route("/password/update").put(isAuthenticatedUser, updatePassword);
+router.route("/password/update").put(isAuthenticatedUser, updatePassword);
 
 // // this route not working
 // router.route("/me/update").put(isAuthenticatedUser, updateProfile);
