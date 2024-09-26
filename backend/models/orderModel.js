@@ -24,7 +24,7 @@ const orderSchema = new mongoose.Schema({
         },
         phoneNo: {
             type: Number,
-            required: trues
+            required: true
         },
     },
     orderItems: [
