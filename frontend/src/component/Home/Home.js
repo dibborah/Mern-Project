@@ -34,7 +34,7 @@ const Home = () => {
 
       <div className="container" id="container">
         {
-          products && products?.map((product) => (
+          products && products.map((product) => (
             <Product product={product}/>
           ))
         }

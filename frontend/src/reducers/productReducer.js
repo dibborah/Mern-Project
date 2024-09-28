@@ -32,3 +32,5 @@ export const productReducer = (state = { products: [] }, action) => {
           return state;
     }
 }
+
+// images: [{ url: 'https://i.ibb.co/DRST11n/1.webp' }],
