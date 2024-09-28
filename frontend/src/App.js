@@ -23,7 +23,6 @@ const App = () => {
       <Header />
       <Routes>
         <Route exact path='/' element={<Home/>} />
-        <Route exact path='/sad' element={<Loader/>} />
       </Routes>
       <Footer />
     </Router>
