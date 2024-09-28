@@ -18,28 +18,33 @@ const Home = () => {
 
   return (
     <Fragment>
-      <MetaData title="ECOMMERCE" />
-      <div className="banner">
-        <p>Welcome to Ecommerce</p>
-        <h1>FIND AMAZON PRODUCTS BELOW</h1>
+      {
+        loading ? 'loading...' : (
+          <Fragment>
+            <MetaData title="ECOMMERCE" />
+            <div className="banner">
+              <p>Welcome to Ecommerce</p>
+              <h1>FIND AMAZON PRODUCTS BELOW</h1>
 
-        <a href="#container">
-          <button>
-            Scroll <CiDesktopMouse2 />
-          </button>
-        </a>
-      </div>
+              <a href="#container">
+                <button>
+                  Scroll <CiDesktopMouse2 />
+                </button>
+              </a>
+            </div>
 
-      <h2 className="homeHeading">Featured Products</h2>
+            <h2 className="homeHeading">Featured Products</h2>
 
-      <div className="container" id="container">
-        {
-          products && products.map((product) => (
-            <Product product={product}/>
-          ))
-        }
-
-      </div>
+            <div className="container" id="container">
+              {
+                products && products.map((product) => (
+                  <Product product={product} key={product._id} />
+                ))
+              }
+            </div>
+          </Fragment>
+        )
+      }
     </Fragment>
   )
 }
