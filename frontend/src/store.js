@@ -1,5 +1,5 @@
-import { createStore, combineReducers, applyMiddleware  } from 'redux';
-import {thunk} from 'redux-thunk';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { thunk } from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { productReducer } from './reducers/productReducer';
 
@@ -18,3 +18,7 @@ const store = createStore(
 );
 
 export default store;
+
+// "proxy": "http://172.22.208.1:4000"
+// "proxy": "http://192.168.27.108:4000"
+// "proxy": "http://192.168.27.108:4000"
