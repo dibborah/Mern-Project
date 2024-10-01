@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Carousel from 'react-material-ui-carousel';
 import './ProductDetails.css'
 import { useSelector, useDispatch } from 'react-redux'
@@ -21,22 +21,23 @@ const ProductDetails = ({ match }) => {
         color: "rgba(20, 20, 20, 0.1)",
         activeColor: 'tomato',
         size: window.innerWidth < 600 ? 20 : 25,
-        value: products.ratings,
+        value: products?.ratings,
         isHalf: true,
     };
+    const [value, setValue] = useState(1);
   return (
     <Fragment>
       <div className="ProductDetails">
         <div>
           <Carousel>
           {
-            products.images &&
-              products.images.map((item, i) => (
+            products?.images &&
+              products?.images?.map((item, i) => (
                 // eslint-disable-next-line jsx-a11y/alt-text
                 <img
                   className="CarouselImage"
-                  src={item.url}
-                  key={item.url}
+                  src={item?.url}
+                  key={item?.url}
                   alt={`${i} Slide`}
                 />
               ))
@@ -47,14 +48,14 @@ const ProductDetails = ({ match }) => {
         <div>
           <div className="detailsBlock-1">
             <h2>{products?.name}</h2>
-            <p>Product # {products._id}</p>
+            <p>Product # {products?._id}</p>
           </div>
           <div className="detailsBlock-2">
             <ReactStars {...options} />
             <span>({products?.numOfReviews} Reviews )</span>
           </div>
           <div className="detailsBlock-3">
-            <h1>{`$${products.price}`}</h1>
+            <h1>{`$${products?.price}`}</h1>
             <div className="detailsBlock-3-1">
               <div className="detailsBlock-3-1-1">
                 <button>-</button>
@@ -66,8 +67,8 @@ const ProductDetails = ({ match }) => {
 
             <p>
               Status:
-              <b className={products.Stock < 1 ? "redColor" : "greenColor"}>
-                {products.Stock < 1 ? "OutOfStock" : "InStock"}
+              <b className={products?.Stock < 1 ? "redColor" : "greenColor"}>
+                {products?.Stock < 1 ? "OutOfStock" : "InStock"}
               </b>
             </p>
           </div>
@@ -84,7 +85,7 @@ const ProductDetails = ({ match }) => {
       {products?.reviews && products?.reviews?.[0] ? (
         <div className="reviews">
           {products?.reviews && 
-            products?.reviews.map((review) => <ReviewCard review={review} />)
+            products?.reviews.map((review) => <ReviewCard review={review} key={review._id} />)
           }
         </div>
       ) : (
