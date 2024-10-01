@@ -1,9 +1,9 @@
 import React, { Fragment, useEffect } from 'react'
 import { CiDesktopMouse2 } from "react-icons/ci";
 import './Home.css'
-import Product from './Product.js'
+import ProductCard from './ProductCard.js'
 import MetaData from '../layout/MetaData.js';
-import { getProduct } from '../../actions/productActions.js';
+import { clearErrors, getProduct } from '../../actions/productActions.js';
 import { useSelector, useDispatch } from 'react-redux'
 import Loader from '../layout/Loader/Loader.js';
 import { useAlert } from 'react-alert';
@@ -19,7 +19,8 @@ const Home = () => {
 
   useEffect(() => {
     if(error) {
-      return alert.error(error);
+      alert.error(error);
+      dispatch(clearErrors());
     }
     dispatch(getProduct());
   }, [dispatch, error]);
@@ -46,7 +47,7 @@ const Home = () => {
             <div className="container" id="container">
               {
                 products && products.map((product) => (
-                  <Product product={product} key={product._id} />
+                  <ProductCard product={product} key={product._id} />
                 ))
               }
             </div>

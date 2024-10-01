@@ -10,7 +10,6 @@ const ReviewCard = ({ review }) => {
         value: review?.rating,
         isHalf: true,
     };
-    console.log('review?.rating', review?.rating);
   return (
     <div className='reviewCard'>
       <img src={profilePng} alt="User" />
