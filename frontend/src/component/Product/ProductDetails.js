@@ -11,7 +11,6 @@ const ProductDetails = ({ match }) => {
     const dispatch = useDispatch();
     const { id } = useParams();
     const { products, loading, error } = useSelector(state => {
-        console.log(state)
         return state.productDetails;
     })
     useEffect(() => {
@@ -80,10 +79,10 @@ const ProductDetails = ({ match }) => {
           <button className="submitReview">Submit Review</button> 
         </div>
       </div>
-      {products.reviews && products.reviews[0] ? (
+      {products?.reviews && products?.reviews?.[0] ? (
         <div className="reviews">
-          {products.review && 
-            products.reviews.map((review) => <ReviewCard review={review} />)
+          {products?.reviews && 
+            products?.reviews.map((review) => <ReviewCard review={review} />)
           }
         </div>
       ) : (
