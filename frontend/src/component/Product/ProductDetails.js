@@ -46,12 +46,12 @@ const ProductDetails = ({ match }) => {
 
         <div>
           <div className="detailsBlock-1">
-            <h2>{products.name}</h2>
+            <h2>{products?.name}</h2>
             <p>Product # {products._id}</p>
           </div>
           <div className="detailsBlock-2">
-            <ReactStars {...options} /> <span> ({products.numOfReviews} Reviews) </span>
-            <span>({products.numOfReviews} Reviews )</span>
+            <ReactStars {...options} />
+            <span>({products?.numOfReviews} Reviews )</span>
           </div>
           <div className="detailsBlock-3">
             <h1>{`$${products.price}`}</h1>
@@ -73,12 +73,14 @@ const ProductDetails = ({ match }) => {
           </div>
 
           <div className="detailsBlock-4">
-            Description: <p>{products.description}</p>
+            Description: <p>{products?.description}</p>
           </div>
 
           <button className="submitReview">Submit Review</button> 
         </div>
       </div>
+
+      <h3 className="reviewsHeading">REVIEWS</h3>
       {products?.reviews && products?.reviews?.[0] ? (
         <div className="reviews">
           {products?.reviews && 

@@ -1,10 +1,10 @@
 .ProductDetails {
-    background-color: rgb(214, 214, 214);
+    background-color: rgb(255, 255, 255);
     width: 100vw;
     max-width: 100%;
     padding: 6vmax;
     box-sizing: border-box;
-    /* display: flex; */
+    display: flex;
 }
 
 .ProductDetails > div {
@@ -28,7 +28,7 @@
 
 .detailsBlock-1 > h2 {
     color: rgba(54, 54, 54);
-    font: 600 0.6vmax 'Robotos'
+    font: 600 1.6vmax 'Roboto'
 };
 
 .detailsBlock-1 > p {
@@ -142,6 +142,54 @@
   background-color: rgb(197, 68, 45);
   transform: scale(1.1);
 }
+
+.reviewsHeading {
+    color: #000000be;
+    font: 500 1.4vmax "Roboto";
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.226);
+    padding: 1vmax;
+    width: 20vmax;
+    margin: auto;
+    margin-bottom: 4vmax;
+}
+
+.reviews {
+    display: flex;
+    overflow: auto;
+}
+.reviewCard {
+    flex: none;
+    box-shadow: 1px solid rgba(0, 0, 0, 0.226);
+    border: 1px solid rgba(56, 56, 56, 0.116);
+    width: 30vmax;
+    display: flex;
+    align-items: center;
+    padding: 3vmax;
+    margin: 1vmax;
+    flex-direction: column;
+}
+
+.reviewCard > img {
+    width: 5vmax;
+}
+
+.reviewCard > p {
+    color: rgba(0, 0, 0, 0.836);
+    font: 600 0.9vmax 'Roboto';
+}
+
+.reviewCard > span {
+    color: rgba(0, 0, 0, 0.445);
+    font: 300 0.8vmax 'cursive';
+}
+
+.noReviews {
+    font: 400 1.3vmax 'Gill Sans';
+    text-align: center;
+    color: rgba(0, 0, 0, 0.548);
+}
+
 
 @media screen and (max-width: 600px){
     .ProductDetails {
