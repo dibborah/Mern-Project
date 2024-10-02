@@ -1,9 +1,9 @@
-import "./Product.css";
 import { useSelector, useDispatch } from "react-redux";
 import { clearErrors, getProduct } from "../../actions/productActions";
 import Loader from "../layout/Loader/Loader";
 import ProductCard from "../Home/ProductCard";
 import { Fragment, useEffect } from "react";
+import "./Product.css";
 
 const Products = () => {
     const dispatch = useDispatch();

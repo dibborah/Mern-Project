@@ -7,6 +7,7 @@ import Home from './component/Home/Home.js'
 import './App.css'
 import ProductDetails from './component/Product/ProductDetails.js'
 import Products from './component/Product/Products.js'
+import Search from "./component/Product/Search.js"
 
 const App = () => {
   React.useEffect(() => {
@@ -24,6 +25,7 @@ const App = () => {
         <Route exact path='/' element={<Home/>} />
         <Route exact path='/product/:id' element={<ProductDetails/>} />
         <Route exact path='/products' element={<Products/>} />
+        <Route exact path='/search' element={<Search/>} />
       </Routes>
       <Footer />
     </Router>
