@@ -6,19 +6,41 @@ import { Fragment, useEffect, useState } from "react";
 import "./Product.css";
 import { useParams } from "react-router-dom";
 import Pagination from 'react-js-pagination';
+// import Slider from "@mui/material";
+// import Typography from "@mui/material"
+
+// unable to resolve below as per tutorial
+import Slider from "@material-ui/core/Slider";
+import Typography from "@material-ui/core/Typography";
 
 const Products = () => {
   const dispatch = useDispatch();
   const params = useParams();
   const [currentPage, setCurrentPage] = useState(1);
-  const { products, loading, error, productsCount, resultPerPage } = useSelector(state => state.products);
+  const [price, setPrice] = useState([0, 25000]);
+  const {
+    products,
+    loading,
+    error,
+    productsCount,
+    resultPerPage,
+    filteredProductsCount,
+  } = useSelector(state => state.products);
+
   const setCurrentPageNo = (e) => {
     setCurrentPage(e);
   }
+  const priceHandler = (event, newPrice) => {
+    setPrice(newPrice);
+  }
+
   const keyword = params?.keyword;
   useEffect(() => {
-    dispatch(getProduct(keyword, currentPage));
-  }, [dispatch, currentPage, keyword]);
+    dispatch(getProduct(keyword, currentPage, price));
+  }, [dispatch, currentPage, keyword, price]);
+
+  let count = filteredProductsCount;
+
   return (
     <Fragment>
       {loading ? <Loader />
@@ -35,8 +57,20 @@ const Products = () => {
               }
             </div>
 
+            <div className="filterBox">
+              <Typography>Price</Typography>
+              <Slider
+                value={price}
+                onChange={priceHandler}
+                valueLabelDisplay="auto"
+                aria-labelledby="range-slider"
+                min={0}
+                max={25000}
+              />
+            </div>
+
             {
-              resultPerPage < productsCount && (
+              (resultPerPage < count) && (
                 <div className="paginationBox">
                   <Pagination
                     activePage={currentPage}
