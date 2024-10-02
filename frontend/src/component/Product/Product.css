@@ -54,9 +54,15 @@
 .page-item:hover {
     background-color: rgb(230, 230, 230);
 }
+
 .page-item:hover .page-link {
-    color: rgb(80 , 80, 80);
+    color: rgb(0 , 0, 0);
 }
+
 .pageItemActive {
     background-color: tomato;
+}
+
+.pageLinkActive {
+    color: white;
 }
