@@ -1,6 +1,7 @@
 import React from 'react';
 import { ReactNavbar } from 'overlay-navbar';
 import logo from '../../../images/logo.png';
+import playstore from '../../../images/playstore.png';
 
 const options = {
     burgerColorHover: "#eb4034",
@@ -25,6 +26,8 @@ const options = {
     nav4justifyContent: "flex-start",
     link1ColorHover: "#eb4034",
     link1Margin: "1vmax",
+
+    // search, profile and cart none icons are working
     profileIconUrl: "/login",
     profileIconColor: "rgba(35, 35, 35,0.8)",
     searchIconColor: "rgba(35, 35, 35,0.8)",
@@ -38,6 +41,9 @@ const options = {
 const Header = () => {
     return (
         <ReactNavbar
+            // searchIcon={true}
+            // cartIcon={true}
+            // profileIcon={true}
             {...options}
         />
     )

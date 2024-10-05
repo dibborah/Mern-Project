@@ -6,18 +6,26 @@ import { Fragment, useEffect, useState } from "react";
 import "./Product.css";
 import { useParams } from "react-router-dom";
 import Pagination from 'react-js-pagination';
-// import Slider from "@mui/material";
-// import Typography from "@mui/material"
 
-// unable to resolve below as per tutorial
 import Slider from "@material-ui/core/Slider";
 import Typography from "@material-ui/core/Typography";
+
+const categories = [
+  "Laptop",
+  "Footwear",
+  "Bottom",
+  "Tops",
+  "Attire",
+  "Camera",
+  "SmartPhones",
+]
 
 const Products = () => {
   const dispatch = useDispatch();
   const params = useParams();
   const [currentPage, setCurrentPage] = useState(1);
   const [price, setPrice] = useState([0, 25000]);
+  const [category, setCategory] = useState("")
   const {
     products,
     loading,
@@ -36,8 +44,8 @@ const Products = () => {
 
   const keyword = params?.keyword;
   useEffect(() => {
-    dispatch(getProduct(keyword, currentPage, price));
-  }, [dispatch, currentPage, keyword, price]);
+    dispatch(getProduct(keyword, currentPage, price, category));
+  }, [dispatch, currentPage, keyword, price, category]);
 
   let count = filteredProductsCount;
 
@@ -67,6 +75,19 @@ const Products = () => {
                 min={0}
                 max={25000}
               />
+
+              <Typography>Categories</Typography>
+              <ul className="categoryBox">
+                {categories.map((category) => (
+                  <li
+                    className="category-link"
+                    key={category}
+                    onClick={() => setCategory(category)}
+                  >
+                    {category}
+                  </li>
+                ))}
+              </ul>
             </div>
 
             {
