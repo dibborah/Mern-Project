@@ -6,6 +6,7 @@ import { Fragment, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Pagination from 'react-js-pagination';
 import { useAlert } from "react-alert";
+import MetaData from "../layout/MetaData";
 
 import Slider from "@material-ui/core/Slider";
 import Typography from "@material-ui/core/Typography";
@@ -62,6 +63,8 @@ const Products = () => {
       {loading ? <Loader />
         : (
           <Fragment>
+
+            <MetaData title="PRODUCTS -- ECOMMERCE" />
             <h2 className="productsHeading">Products</h2>
 
             <div className="products">
