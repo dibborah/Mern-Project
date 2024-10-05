@@ -18,7 +18,8 @@ const Home = () => {
   const alert = useAlert();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { loading, error, products, productsCount } = useSelector(
+
+  const { loading, error, products } = useSelector(
     state => state.products
   );
 
@@ -28,8 +29,7 @@ const Home = () => {
       dispatch(clearErrors());
     }
     dispatch(getProduct());
-  }, [dispatch, error]);
-
+  }, [dispatch, error, alert]);
   return (
     <Fragment>
       {

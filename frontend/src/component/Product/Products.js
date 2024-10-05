@@ -5,6 +5,7 @@ import ProductCard from "../Home/ProductCard";
 import { Fragment, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Pagination from 'react-js-pagination';
+import { useAlert } from "react-alert";
 
 import Slider from "@material-ui/core/Slider";
 import Typography from "@material-ui/core/Typography";
@@ -36,6 +37,8 @@ const Products = () => {
     filteredProductsCount,
   } = useSelector(state => state.products);
 
+  const alert = useAlert();
+
   const setCurrentPageNo = (e) => {
     setCurrentPage(e);
   }
@@ -45,8 +48,12 @@ const Products = () => {
 
   const keyword = params?.keyword;
   useEffect(() => {
+    if (error) {
+      alert.error(error)
+      dispatch(clearErrors());
+    }
     dispatch(getProduct(keyword, currentPage, price, category, ratings));
-  }, [dispatch, currentPage, keyword, price, category, ratings]);
+  }, [dispatch, currentPage, keyword, price, category, ratings, alert, error]);
 
   let count = filteredProductsCount;
 
