@@ -67,3 +67,55 @@
     height: 70%;
     transition: all 0.5s;
 }
+
+.loginForm > div,
+.signUpForm > div {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.loginForm > div > input,
+.signUpForm > div > input {
+    padding: 1vmax 4vmax;
+    padding-right: 1vmax;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.267);
+    border-radius: 4px;
+    font: 300 0.9vmax "Roboto";
+    outline: none
+};
+
+/*  The below css is not working as per the tut */
+/* 
+.loginForm > div > span,
+.signUpForm > div > span {
+    position: absolute;
+    transform: translate(1vmax);
+    font-size: 1.6vmax;
+    color: rgba(0, 0, 0, 0  .623);
+}; */
+
+
+/* My custom CSS */
+.fa-regular.fa-envelope {
+    position: absolute;
+    transform: translate(1vmax);
+    font-size: 1.6vmax;
+    color: rgba(0, 0, 0, 0  .623);
+}
+
+.customIcon {
+    position: absolute;
+    transform: translate(1vmax);
+    font-size: 1.6vmax;
+    color: rgba(0, 0, 0, 0  .623);
+}
+
+.fa-solid.fa-lock-open {
+    position: absolute;
+    transform: translate(1vmax);
+    font-size: 1.6vmax;
+    color: rgba(0, 0, 0, 0  .623);
+}

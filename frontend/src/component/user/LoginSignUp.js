@@ -35,7 +35,10 @@ const LoginSignUp = () => {
     }
   };
 
-  // To be continued from : 7h36m
+  // To be continued from : 7h 36m
+
+  // <MailOutlineIcon />
+  // <LockOpenIcon />
 
   return (
     <Fragment>
@@ -50,7 +53,7 @@ const LoginSignUp = () => {
           </div>
           <form className="loginForm" ref={loginTab} onSubmit={loginSubmit}>
             <div className="loginEmail">
-              <MailOutlineIcon />
+                <i className="fa-regular fa-envelope customIcon" />
               <input
                 type="email"
                 placeholder="Email"
@@ -60,7 +63,7 @@ const LoginSignUp = () => {
               />
             </div>
             <div className="loginPassword">
-              <LockOpenIcon />
+              <i class="fa-solid fa-lock-open" />
               <input
                 type="password"
                 placeholder="Password"
